@@ -1,4 +1,5 @@
 import java.awt.AWTException;
+import java.util.*;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
@@ -9,10 +10,14 @@ import java.awt.event.InputEvent;
 public class Clicker{
 	public static void main(String []arsg)
 	{
+		Scanner input = new Scanner(System.in);
 		Point b;
 		PointerInfo a;
 		int x, y;
-		for (double i=0;i<60;i++)
+		int behind, how = 0;
+		System.out.println("How many second to next click?");behind=input.nextInt()*1000;
+		System.out.println("How many clicks?" ); how=input.nextInt();
+		for (double i=0;i<how;i++)
 		{
 			a = MouseInfo.getPointerInfo();
 			b = a.getLocation();
@@ -22,12 +27,11 @@ public class Clicker{
 				click(x,y);
 				System.out.println("lel");
 			} catch (AWTException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			try
 			{
-				Thread.sleep(500);
+				Thread.sleep(behind);
 			}
 			catch(InterruptedException e) {}
 		}
