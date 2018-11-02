@@ -1,5 +1,6 @@
+package Mouse;
+
 import java.awt.AWTException;
-import java.util.*;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
@@ -8,15 +9,18 @@ import java.awt.event.InputEvent;
 
 
 public class Clicker{
-	public static void main(String []arsg)
+	private int how;
+	private int perSecond;
+	public Clicker(int how, int perSecond)
 	{
-		Scanner input = new Scanner(System.in);
+		this.how=how;
+		this.perSecond=perSecond*1000;
+	}
+	public void someClick()
+	{
 		Point b;
 		PointerInfo a;
 		int x, y;
-		int behind, how = 0;
-		System.out.println("How many second to next click?");behind=input.nextInt()*1000;
-		System.out.println("How many clicks?" ); how=input.nextInt();
 		for (double i=0;i<how;i++)
 		{
 			a = MouseInfo.getPointerInfo();
@@ -31,7 +35,7 @@ public class Clicker{
 			}
 			try
 			{
-				Thread.sleep(behind);
+				Thread.sleep(perSecond);
 			}
 			catch(InterruptedException e) {}
 		}
@@ -41,6 +45,5 @@ public class Clicker{
 	    bot.mouseMove(x, y);    
 	    bot.mousePress(InputEvent.BUTTON1_MASK);
 	    bot.mouseRelease(InputEvent.BUTTON1_MASK);
-	}
 }
-
+}
